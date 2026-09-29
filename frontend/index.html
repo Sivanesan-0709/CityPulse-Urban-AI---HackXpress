@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityPulse AI - Mobile Urban Intelligence Platform (SIH 2026)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              900: '#164e63',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Leaflet GIS Map CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen overflow-x-hidden antialiased">
+  <!-- Main Application Root -->
+  <div id="app">
+    <!-- Initial Loading State -->
+    <div class="min-h-screen flex items-center justify-center flex-col space-y-4">
+      <div class="w-12 h-12 rounded-xl bg-cyan-500 flex items-center justify-center animate-pulse">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+      </div>
+      <div class="text-sm font-semibold text-gray-300">Initializing CityPulse Urban AI Platform...</div>
+      <div class="text-xs text-gray-500">SIH 2026 • Problem Statement ID: 26124</div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="/static/js/store.js"></script>
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/components/Header.js"></script>
+  <script src="/static/js/components/Sidebar.js"></script>
+  <script src="/static/js/components/DemoControls.js"></script>
+  <script src="/static/js/components/DashboardOverview.js"></script>
+  <script src="/static/js/components/GisMap.js"></script>
+  <script src="/static/js/components/FleetMonitoring.js"></script>
+  <script src="/static/js/components/EdgeAiSimulator.js"></script>
+  <script src="/static/js/components/DifferentiatorPostRepair.js"></script>
+  <script src="/static/js/components/DifferentiatorBandwidth.js"></script>
+  <script src="/static/js/components/DifferentiatorCausality.js"></script>
+  <script src="/static/js/components/RoadConditions.js"></script>
+  <script src="/static/js/components/TrafficIntelligence.js"></script>
+  <script src="/static/js/components/RoadSafety.js"></script>
+  <script src="/static/js/components/InfrastructureDefects.js"></script>
+  <script src="/static/js/components/IncidentManagement.js"></script>
+  <script src="/static/js/components/CommuterApp.js"></script>
+  <script src="/static/js/components/WhyHiddenPanel.js"></script>
+  <script src="/static/js/components/HeadwayDashboard.js"></script>
+  <script src="/static/js/components/DashcamUpload.js"></script>
+  <script src="/static/js/components/ModelStatusPanel.js"></script>
+  <script src="/static/js/components/DemoHealthPanel.js"></script>
+  <script src="/static/js/components/MobilityDashboard.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
+

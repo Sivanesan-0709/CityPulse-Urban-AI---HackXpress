@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CityPulse Urban AI - Mobile Driver Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-live { animation: pulse-ring 2s infinite ease-in-out; }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="w-full max-w-md bg-gray-900 border border-gray-800 rounded-2xl p-6 shadow-2xl space-y-6">
+    
+    <!-- Security Insecure Context Alert -->
+    <div id="secure-context-alert" class="hidden p-4 rounded-xl bg-rose-950/80 border border-rose-600 text-rose-200 text-xs space-y-2">
+      <div class="font-bold text-sm flex items-center gap-2">
+        <span>⚠️ Insecure Location Context (HTTP)</span>
+      </div>
+      <p>
+        Browsers block <code class="bg-black/40 px-1 py-0.5 rounded">navigator.geolocation</code> on non-HTTPS origins.
+      </p>
+      <div class="pt-1 border-t border-rose-800/60 font-mono text-[11px]">
+        <strong>How to resolve:</strong> Run Cloudflare Tunnel (<code class="text-cyan-300">cloudflared tunnel --url http://localhost:8000</code>) or ngrok to get a secure <code class="text-cyan-300">https://</code> URL.
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold">
+          📡
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-white">MTC Driver Live Tracker</h1>
+          <p class="text-xs text-gray-400">Onboard Telemetry Streamer (2s GPS)</p>
+        </div>
+      </div>
+      <span id="badge-status" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700">
+        STANDBY
+      </span>
+    </div>
+
+    <!-- Config Inputs -->
+    <div class="space-y-4 text-xs">
+      <div>
+        <label class="block font-medium text-gray-300 mb-1">Select Bus Unit</label>
+        <select id="select-bus" class="w-full bg-gray-800 border border-gray-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-cyan-500 font-mono">
+          <option value="BUS-01">BUS-01 (Route 21G)</option>
+          <option value="BUS-02">BUS-02 (Route 21G)</option>
+          <option value="BUS-03">BUS-03 (Route 19B)</option>
+          <option value="BUS-04">BUS-04 (Route 19B)</option>
+          <option value="BUS-05">BUS-05 (Route 5C)</option>
+          <option value="BUS-06">BUS-06 (Route 5C)</option>
+          <option value="BUS-07">BUS-07 (Route 23C)</option>
+          <option value="BUS-08">BUS-08 (Route 23C)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block font-medium text-gray-300 mb-1">Assigned Route</label>
+        <input id="input-route" type="text" value="21G" readonly class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-cyan-400 font-mono font-bold">
+      </div>
+    </div>
+
+    <!-- Telemetry Display Box -->
+    <div class="p-4 rounded-xl bg-gray-950/80 border border-gray-800 space-y-2 text-xs font-mono">
+      <div class="flex justify-between text-gray-400">
+        <span>Latitude:</span>
+        <span id="val-lat" class="text-white font-bold">--</span>
+      </div>
+      <div class="flex justify-between text-gray-400">
+        <span>Longitude:</span>
+        <span id="val-lng" class="text-white font-bold">--</span>
+      </div>
+      <div class="flex justify-between text-gray-400">
+        <span>Speed:</span>
+        <span id="val-speed" class="text-cyan-400 font-bold">-- km/h</span>
+      </div>
+      <div class="flex justify-between text-gray-400">
+        <span>Heading:</span>
+        <span id="val-heading" class="text-emerald-400 font-bold">--°</span>
+      </div>
+      <div class="flex justify-between text-gray-400 pt-2 border-t border-gray-800 text-[11px]">
+        <span>Total Pings Sent:</span>
+        <span id="val-pings" class="text-gray-300 font-bold">0</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="space-y-3">
+      <button id="btn-toggle" onclick="toggleTracking()" class="w-full py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm transition shadow-lg shadow-cyan-600/20 cursor-pointer">
+        ▶ Start GPS Streaming
+      </button>
+      <a href="/" class="block text-center text-xs text-gray-400 hover:text-cyan-300 transition">
+        ← Return to Main CityPulse Dashboard
+      </a>
+    </div>
+
+  </div>
+
+  <script src="/static/js/tracker.js"></script>
+</body>
+</html>
